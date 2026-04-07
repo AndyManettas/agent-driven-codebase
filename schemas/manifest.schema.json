@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "manifest.yaml",
+  "description": "Schema for the agent-driven codebase discovery index",
+  "type": "object",
+  "required": ["version", "entrypoints", "task_registry"],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "const": 1
+    },
+    "entrypoints": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Files agents should read on cold start"
+    },
+    "task_registry": {
+      "type": "string",
+      "description": "Path to TASKS.yaml"
+    },
+    "plans_dir": {
+      "type": "string",
+      "description": "Directory containing task plans"
+    },
+    "reports_dir": {
+      "type": "string",
+      "description": "Directory containing task reports"
+    },
+    "examples_dir": {
+      "type": "string",
+      "description": "Directory containing canonical code examples"
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "path"],
+        "properties": {
+          "name": { "type": "string" },
+          "path": { "type": "string" },
+          "triggers": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

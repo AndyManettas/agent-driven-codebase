@@ -1,0 +1,50 @@
+version: 1
+
+status_values:
+  - backlog
+  - ready
+  - in_progress
+  - blocked
+  - in_review
+  - done
+
+tasks:
+  - id: EXAMPLE-001
+    title: Add user login endpoint
+    status: ready
+    priority: P1
+    size: M
+    area: auth
+    deps: []
+    plan: plans/EXAMPLE-001-user-login.md
+    report: .agents/reports/EXAMPLE-001.md
+    files:
+      - src/auth/**
+      - tests/auth/**
+    acceptance:
+      - Valid credentials create a session.
+      - Invalid credentials return 401 without leaking account existence.
+      - Login is rate-limited.
+    verify:
+      - <your test command> auth
+      - <your full verification command>
+
+  - id: EXAMPLE-002
+    title: Add password reset request endpoint
+    status: backlog
+    priority: P2
+    size: M
+    area: auth
+    deps: [EXAMPLE-001]
+    plan: plans/EXAMPLE-002-password-reset.md
+    report: .agents/reports/EXAMPLE-002.md
+    files:
+      - src/auth/**
+      - tests/auth/**
+    acceptance:
+      - Endpoint is idempotent.
+      - Response does not reveal account existence.
+      - Email job is enqueued.
+    verify:
+      - <your test command> auth
+      - <your full verification command>

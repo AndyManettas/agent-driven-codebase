@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TASKS.yaml",
+  "description": "Schema for the agent-driven codebase task registry",
+  "type": "object",
+  "required": ["version", "status_values", "tasks"],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "const": 1
+    },
+    "status_values": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "status", "priority"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z]+-[0-9]+$",
+            "description": "Unique task identifier (e.g., AUTH-001)"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "type": "string",
+            "enum": ["backlog", "ready", "in_progress", "blocked", "in_review", "done"]
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["P0", "P1", "P2", "P3"]
+          },
+          "size": {
+            "type": "string",
+            "enum": ["XS", "S", "M", "L", "XL"]
+          },
+          "area": {
+            "type": "string"
+          },
+          "deps": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Z]+-[0-9]+$"
+            }
+          },
+          "parent": {
+            "type": "string",
+            "pattern": "^[A-Z]+-[0-9]+$",
+            "description": "Parent task ID when this is a decomposed sub-task"
+          },
+          "plan": {
+            "type": "string",
+            "description": "Path to the task plan file"
+          },
+          "report": {
+            "type": "string",
+            "description": "Path to the task report file"
+          },
+          "files": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Glob patterns for files owned by this task"
+          },
+          "acceptance": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Acceptance criteria"
+          },
+          "verify": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Commands to run for verification"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

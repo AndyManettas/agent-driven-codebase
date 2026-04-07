@@ -1,0 +1,1 @@
+- [project_purpose.md](project_purpose.md) — Meta repo purpose: drop-in template for agent-native codebases

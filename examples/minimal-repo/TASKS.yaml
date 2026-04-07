@@ -1,0 +1,53 @@
+version: 1
+
+status_values:
+  - backlog
+  - ready
+  - in_progress
+  - blocked
+  - in_review
+  - done
+
+tasks:
+  - id: API-001
+    title: Add task CRUD endpoints
+    status: ready
+    priority: P1
+    size: M
+    area: api
+    deps: []
+    plan: plans/API-001-task-crud.md
+    report: .agents/reports/API-001.md
+    files:
+      - src/routes/tasks/**
+      - src/services/tasks/**
+      - tests/routes/tasks/**
+    acceptance:
+      - POST /tasks creates a task and returns 201.
+      - GET /tasks returns paginated task list.
+      - GET /tasks/:id returns a single task or 404.
+      - PUT /tasks/:id updates a task or returns 404.
+      - DELETE /tasks/:id soft-deletes a task or returns 404.
+    verify:
+      - npm test -- tasks
+      - npm run lint && npm run typecheck && npm test
+
+  - id: API-002
+    title: Add API key authentication middleware
+    status: backlog
+    priority: P1
+    size: S
+    area: auth
+    deps: []
+    plan: plans/API-002-api-key-auth.md
+    report: .agents/reports/API-002.md
+    files:
+      - src/middleware/auth/**
+      - tests/middleware/auth/**
+    acceptance:
+      - Requests without a valid API key return 401.
+      - Requests with a valid API key proceed to the handler.
+      - API keys are hashed at rest in the database.
+    verify:
+      - npm test -- auth
+      - npm run lint && npm run typecheck && npm test

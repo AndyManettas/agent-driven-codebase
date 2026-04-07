@@ -1,0 +1,4 @@
+* @platform-team
+/src/auth/ @security-team
+/src/payments/ @payments-team
+/scripts/ @platform-team
