@@ -39,8 +39,8 @@ tasks:
     size: S
     area: auth
     deps: []
-    plan: plans/API-002-api-key-auth.md
-    report: .agents/reports/API-002.md
+    plan: plans/TEMPLATE.md
+    report: .agents/reports/TEMPLATE.md
     files:
       - src/middleware/auth/**
       - tests/middleware/auth/**

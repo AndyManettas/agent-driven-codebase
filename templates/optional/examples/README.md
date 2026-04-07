@@ -1,11 +1,12 @@
-# Examples
+# examples
 
-Use these as canonical patterns for this project:
+Adopt this module when agents need canonical implementation-shape guidance in addition to prose docs.
 
-- `examples/api-handler.*` — route/controller pattern
-- `examples/service.*` — domain service pattern
-- `examples/repository.*` — data access pattern
-- `examples/feature.test.*` — test structure
-- `examples/component.*` — UI component pattern
+Populate the directory with real, compiling examples from the target repo, such as:
+- route or handler patterns
+- service-layer patterns
+- repository or query patterns
+- feature test patterns
+- UI component patterns
 
-All examples should be real, compiling code — not pseudo-code.
+Do not add pseudo-code. Examples should be real reference material from the repo.

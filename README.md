@@ -1,64 +1,76 @@
 # Agent-Driven Codebase
 
-A lean, additive template that makes any existing codebase legible and steerable for long-running cloud agents (Cursor, Codex, Claude Code).
+A lean, additive template that teams copy into an existing codebase so human-triggered cloud agents have durable repo-native context during long runs.
 
-## The problem
+## What this repo is
 
-Agents can read code, edit files, and run commands — but most repos give them no operating contract, no structured task list, no architecture context, and no handoff mechanism. The result: agents guess at requirements, drift from the spec, lose context between sessions, and repeat work.
+This repo ships a narrow v1 template for Cursor or Codex style agents.
+The template is additive-first: it gives the repo durable truth about the product, the assigned task, how to work, and how to leave handoff state.
 
-## What this template provides
+## What problem it solves
 
-Drop `templates/core/` into your repo and agents get:
+Agents can read code, edit files, and run commands, but most repos give them no operating contract, no task registry, no architecture map, and no durable handoff format.
+That forces long-running agents to guess, drift, or repeat work across sessions.
 
-| File | Purpose |
-|------|---------|
-| `AGENTS.md` | Operating contract: read order, lifecycle, commands, style, boundaries |
-| `SPEC.md` | Product truth: goals, requirements, constraints |
-| `TASKS.yaml` | Task registry: structured work items with status, priority, acceptance criteria |
-| `plans/TEMPLATE.md` | Per-task implementation plans |
-| `docs/architecture.md` | System map: modules, data flow, boundaries |
-| `.agents/manifest.yaml` | Discovery index: where to find everything |
-| `.agents/reports/TEMPLATE.md` | Handoff reports: what was done, what remains, what to do next |
+## Template vs harness
 
-## What this template is not
+The template is not the harness.
+Cursor, Codex, or another runtime handles context windows, liveness, and run lifecycle.
+This repo only provides the durable repo-native surfaces those harnesses should read.
 
-This is not an orchestration platform. It does not implement leases, heartbeats, runtime coordination, or autonomous task selection. Your agent harness (Cursor, Codex, etc.) handles context management, lifecycle, and liveness. This template provides the **durable truth** your agents read.
+## Minimum serious subset
 
-## Quick start
+Copy [`templates/core/`](templates/core/) into the target repo root.
+That core is intentionally exactly seven files:
 
-```bash
-# Copy core template into your repo
-cp -r templates/core/* /path/to/your/repo/
-cp -r templates/core/.agents /path/to/your/repo/
-
-# Fill in the files
-# 1. Edit SPEC.md with your product description
-# 2. Replace example tasks in TASKS.yaml with your real tasks
-# 3. Fill in docs/architecture.md with your system map
-# 4. Point AGENTS.md commands at your existing tools
-```
-
-Then prompt your agent:
-
-> Work on task PROJ-001. Read AGENTS.md first for the operating rules.
+- `AGENTS.md`
+- `SPEC.md`
+- `TASKS.yaml`
+- `plans/TEMPLATE.md`
+- `docs/architecture.md`
+- `.agents/manifest.yaml`
+- `.agents/reports/TEMPLATE.md`
 
 ## Optional modules
 
-`templates/optional/` contains add-ons for repos that need them: wrapper scripts, ADR templates, local AGENTS.md examples for monorepos, CI workflows, STATUS.md, and greenfield root files. See [docs/adoption.md](docs/adoption.md) for guidance on when to add each.
+[`templates/optional/`](templates/optional/) contains self-contained add-ons for repos that need stronger conventions later:
+
+- `scripts/`
+- `examples/`
+- `adr/`
+- `local-agents/`
+- `skills/`
+- `ci/`
+- `mcp/`
+- `status/`
+- `greenfield-root-files/`
+
+These are not part of the minimum serious setup.
+
+## Adopt the core
+
+1. Copy `templates/core/` into the target repo root.
+2. Replace the placeholder product truth in `SPEC.md`.
+3. Replace the placeholder tasks in `TASKS.yaml`.
+4. Write `docs/architecture.md`.
+5. Point `AGENTS.md` at the repo's existing commands.
+6. Add optional modules only where needed.
 
 ## Docs
 
-- [Vision](docs/vision.md) — why agent-native repos matter
-- [How it works](docs/how-it-works.md) — the assignment flow and how the files work together
-- [Adoption](docs/adoption.md) — step-by-step guide to applying the template
-- [File-by-file rationale](docs/file-by-file-rationale.md) — what each file does and why
-- [Platform usage](docs/cursor-codex-usage.md) — Cursor, Codex, and Claude Code tips
+- [Philosophy](docs/philosophy.md) — core principles and boundaries
+- [Getting started](docs/getting-started.md) — exact v1 adoption flow
+- [Migration guide](docs/migration-guide.md) — how to add the template to an existing repo without collisions
+- [File rationale](docs/file-rationale.md) — what each file does, when to customize it, and failure modes
+- [Cursor and Codex usage](docs/cursor-codex-usage.md) — thin platform-specific prompting guidance
+- [How it works](docs/how-it-works.md) — the task flow and handoff model
 
 ## Examples
 
-- [examples/minimal-repo/](examples/minimal-repo/) — smallest working example with a real spec, tasks, plan, and report
-- [examples/before-after/](examples/before-after/) — shows adoption into a previously unstructured repo
+- [Minimal repo](examples/minimal-repo/) — smallest working example with a real spec, tasks, plan, and report
+- [Before / after](examples/before-after/) — adoption into a previously unstructured repo
 
-## Schemas
+## Schemas and tests
 
-JSON Schema files for validating `TASKS.yaml` and `.agents/manifest.yaml` are in [schemas/](schemas/).
+Schemas live in [schemas/](schemas/).
+Tests cover the 7-file core, schema expectations, docs links, report headings, and adoption smoke behavior in [tests/](tests/).

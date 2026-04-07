@@ -16,8 +16,8 @@ tasks:
     size: S
     area: api
     deps: []
-    plan: plans/APP-001-input-validation.md
-    report: .agents/reports/APP-001.md
+    plan: plans/TEMPLATE.md
+    report: .agents/reports/TEMPLATE.md
     files:
       - src/**
       - tests/**

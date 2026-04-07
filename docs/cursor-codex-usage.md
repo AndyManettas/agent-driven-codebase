@@ -1,15 +1,13 @@
-# Platform-specific usage
+# Cursor and Codex usage
 
 ## Cursor
 
-### Cloud agents
 When launching a Cursor cloud agent for a task, include the task ID in the prompt:
 
 > Work on task PROJ-001. Read AGENTS.md first for the repo operating rules, then follow the assigned-task lifecycle.
 
-Cursor cloud agents manage their own context window and lifecycle. The template files provide the durable truth they read — you do not need to manage context for them.
+Cursor manages its own context window and run lifecycle. The template files provide the durable truth it should read.
 
-### Rules files
 If you use Cursor's `.cursor/rules/` system, keep these rules thin and derived from AGENTS.md. Do not hand-maintain divergent policy in both places.
 
 Example `.cursor/rules/project.mdc`:
@@ -21,19 +19,13 @@ Follow the lifecycle defined in AGENTS.md.
 
 ## Codex (OpenAI)
 
-Codex agents read repo files the same way. The same template works — point the agent at AGENTS.md as the entry point.
-
-## Claude Code
-
-If using Claude Code, you can create a `CLAUDE.md` file that mirrors the core guidance from AGENTS.md:
+Codex agents read repo files the same way. Point the agent at `AGENTS.md` as the entry point and assign a task ID in the prompt:
 
 ```
 Read AGENTS.md for the full operating contract.
 Read the assigned task in TASKS.yaml before starting work.
 Follow the lifecycle defined in AGENTS.md.
 ```
-
-Keep `CLAUDE.md` as a thin pointer, not a second copy of the rules.
 
 ## General guidance
 

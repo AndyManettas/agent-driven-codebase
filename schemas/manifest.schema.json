@@ -3,7 +3,7 @@
   "title": "manifest.yaml",
   "description": "Schema for the agent-driven codebase discovery index",
   "type": "object",
-  "required": ["version", "entrypoints", "task_registry"],
+  "required": ["version", "entrypoints", "task_registry", "plans_dir", "reports_dir"],
   "properties": {
     "version": {
       "type": "integer",
@@ -27,25 +27,9 @@
       "type": "string",
       "description": "Directory containing task reports"
     },
-    "examples_dir": {
+    "skills_dir": {
       "type": "string",
-      "description": "Directory containing canonical code examples"
-    },
-    "skills": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": ["name", "path"],
-        "properties": {
-          "name": { "type": "string" },
-          "path": { "type": "string" },
-          "triggers": {
-            "type": "array",
-            "items": { "type": "string" }
-          }
-        },
-        "additionalProperties": false
-      }
+      "description": "Optional directory containing reusable repo skills"
     }
   },
   "additionalProperties": false

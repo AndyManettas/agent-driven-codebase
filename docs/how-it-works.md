@@ -11,9 +11,9 @@ Human                          Repo                           Agent
   │                             │                               │
   │                             ◄── reads AGENTS.md ────────────┤
   │                             ◄── reads assigned task ────────┤
-  │                             ◄── checks for file overlap ────┤
   │                             ◄── reads plan ─────────────────┤
   │                             ◄── reads architecture.md ──────┤
+  │                             ◄── checks for file overlap ────┤
   │                             │                               │
   │                             ◄── creates task branch ────────┤
   │                             ◄── sets status: in_progress ───┤
@@ -25,6 +25,7 @@ Human                          Repo                           Agent
   │                             │    └─ rerun verification      │
   │                             │                               │
   │                             ◄── updates report ─────────────┤
+  │                             ◄── rebases / rechecks overlap ─┤
   │                             ◄── sets status: done ──────────┤
   │                             │                               │
 ```
@@ -35,7 +36,7 @@ Human                          Repo                           Agent
 
 **TASKS.yaml** tells the agent what work exists. The agent reads its assigned task entry to understand the acceptance criteria, which files are in scope, what dependencies exist, and what verification commands to run. The `files:` field is also used for overlap detection when multiple agents work concurrently.
 
-**plans/\<TASK-ID\>.md** (optional) gives the agent a pre-approved implementation approach. Without a plan, the agent must design the approach itself. Plans reduce drift and make long tasks more predictable.
+**plans/\<TASK-ID\>.md** (optional) gives the agent a pre-approved implementation approach. Without a task-specific plan, the agent starts from `plans/TEMPLATE.md`. Plans reduce drift and make long tasks more predictable.
 
 **docs/architecture.md** gives the agent a system map so it understands module boundaries, data flow, external dependencies, and where to add new code.
 
@@ -57,7 +58,7 @@ This is how context survives across sessions without the agent needing memory of
 When multiple agents work on different tasks concurrently:
 1. Each task declares its `files:` globs in TASKS.yaml.
 2. Before starting, an agent checks whether any `in_progress` task has overlapping file globs.
-3. If overlap exists, the agent stops and reports the conflict instead of proceeding.
+3. If overlap exists, the agent stops, marks the task blocked, and reports the conflict instead of proceeding.
 4. Before marking done, the agent rebases on the default branch and rechecks for conflicts.
 
 This is advisory — it prevents the most common collision (two agents editing the same files) but does not guarantee atomicity.

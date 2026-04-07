@@ -9,42 +9,40 @@ status_values:
   - done
 
 tasks:
-  - id: EXAMPLE-001
-    title: Add user login endpoint
+  - id: TASK-001
+    title: Replace with first real task title
     status: ready
     priority: P1
     size: M
-    area: auth
+    area: core
     deps: []
-    plan: plans/EXAMPLE-001-user-login.md
-    report: .agents/reports/EXAMPLE-001.md
+    plan: plans/TEMPLATE.md
+    report: .agents/reports/TEMPLATE.md
     files:
-      - src/auth/**
-      - tests/auth/**
+      - src/example/**
+      - tests/example/**
     acceptance:
-      - Valid credentials create a session.
-      - Invalid credentials return 401 without leaking account existence.
-      - Login is rate-limited.
+      - Replace this line with the first concrete acceptance criterion.
+      - Replace this line with the second concrete acceptance criterion.
     verify:
-      - <your test command> auth
+      - <your targeted verification command>
       - <your full verification command>
 
-  - id: EXAMPLE-002
-    title: Add password reset request endpoint
+  - id: TASK-002
+    title: Replace with next real task title
     status: backlog
     priority: P2
-    size: M
-    area: auth
-    deps: [EXAMPLE-001]
-    plan: plans/EXAMPLE-002-password-reset.md
-    report: .agents/reports/EXAMPLE-002.md
+    size: S
+    area: core
+    deps: [TASK-001]
+    plan: plans/TEMPLATE.md
+    report: .agents/reports/TEMPLATE.md
     files:
-      - src/auth/**
-      - tests/auth/**
+      - src/example/**
+      - tests/example/**
     acceptance:
-      - Endpoint is idempotent.
-      - Response does not reveal account existence.
-      - Email job is enqueued.
+      - Replace this line with a dependency-aware acceptance criterion.
+      - Replace this line with the final success condition.
     verify:
-      - <your test command> auth
+      - <your targeted verification command>
       - <your full verification command>

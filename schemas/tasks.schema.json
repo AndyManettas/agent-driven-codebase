@@ -18,12 +18,25 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "title", "status", "priority"],
+        "required": [
+          "id",
+          "title",
+          "status",
+          "priority",
+          "size",
+          "area",
+          "deps",
+          "plan",
+          "report",
+          "files",
+          "acceptance",
+          "verify"
+        ],
         "properties": {
           "id": {
             "type": "string",
             "pattern": "^[A-Z]+-[0-9]+$",
-            "description": "Unique task identifier (e.g., AUTH-001)"
+            "description": "Unique task identifier (e.g., TASK-001)"
           },
           "title": {
             "type": "string",

@@ -9,7 +9,7 @@
 ## Precedence
 1. Safety boundaries
 2. Tests, schemas, and contracts define current behavior
-3. `SPEC.md` + `TASKS.yaml` define intended behavior
+3. `SPEC.md` and the assigned task in `TASKS.yaml` define intended behavior
 4. The task plan defines task-local approach
 5. This file defines workflow and style
 6. Stale docs lose to code and tests
@@ -17,21 +17,27 @@
 ## Assigned-task lifecycle
 1. Read this file.
 2. Read the assigned task in `TASKS.yaml`.
-3. Check default-branch `TASKS.yaml` for any `in_progress` task whose `files:` globs overlap the assigned task. If overlap exists, stop and report the conflict.
-4. Read the task plan if present.
-5. Read `docs/architecture.md`.
-6. Create branch `task/<TASK-ID>-<slug>` and set the task to `in_progress` in `TASKS.yaml`.
-7. Implement with targeted tests first, then run full verification.
-8. Before marking `done`: rebase on the default branch, rerun verification.
-9. If rebase conflicts touch files outside the task's declared `files:`, stop and flag.
-10. Update `.agents/reports/<TASK-ID>.md`.
-11. Update task status in `TASKS.yaml` to `done` only if verification passes.
+3. Read the task plan if present.
+4. Read `docs/architecture.md`.
+5. Check default-branch `TASKS.yaml` for any `in_progress` task whose `files:` globs overlap the assigned task.
+6. If overlap exists, stop, set the task to `blocked`, and report the conflict.
+7. Create branch `task/<TASK-ID>-<slug>` and set the task to `in_progress` in `TASKS.yaml`.
+8. Implement, run targeted verification, and update `.agents/reports/<TASK-ID>.md`.
+9. Before marking `done`, rebase on the default branch, rerun verification, and recheck overlap.
+10. Update task status in `TASKS.yaml` to `done` only if verification passes.
 
 ## Retry budget
-After 3 identical verification failures, mark the task `blocked` with the reason in the report.
+After 3 identical verification failures, mark the task `blocked`, write the reason in the report, and stop.
 
 ## Escalation
 Stop on any "Ask first" boundary or unresolved file-overlap conflict.
+
+## Task decomposition
+- Only decompose the assigned task.
+- Use `parent:` on child tasks when decomposition is needed.
+
+## Coordination constraint
+Repo-only git state is advisory conflict avoidance, not a hard distributed lock.
 
 ## Commands
 - lint: `npm run lint`
@@ -76,3 +82,5 @@ Stop on any "Ask first" boundary or unresolved file-overlap conflict.
 - Spec: `SPEC.md`
 - Tasks: `TASKS.yaml`
 - Architecture: `docs/architecture.md`
+- Plans: `plans/`
+- Report template: `.agents/reports/TEMPLATE.md`
