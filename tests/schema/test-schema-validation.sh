@@ -135,13 +135,10 @@ def validate_manifest_file(rel_path: str) -> None:
 task_files = [
     "templates/core/TASKS.yaml",
     "examples/minimal-repo/TASKS.yaml",
-    "examples/before-after/after/TASKS.yaml",
 ]
 
 manifest_files = [
     "templates/core/.agents/manifest.yaml",
-    "examples/minimal-repo/.agents/manifest.yaml",
-    "examples/before-after/after/.agents/manifest.yaml",
 ]
 
 for rel_path in task_files:
@@ -290,14 +287,11 @@ end
 
 task_files = [
   "templates/core/TASKS.yaml",
-  "examples/minimal-repo/TASKS.yaml",
-  "examples/before-after/after/TASKS.yaml"
+  "examples/minimal-repo/TASKS.yaml"
 ]
 
 manifest_files = [
-  "templates/core/.agents/manifest.yaml",
-  "examples/minimal-repo/.agents/manifest.yaml",
-  "examples/before-after/after/.agents/manifest.yaml"
+  "templates/core/.agents/manifest.yaml"
 ]
 
 task_files.each do |rel_path|

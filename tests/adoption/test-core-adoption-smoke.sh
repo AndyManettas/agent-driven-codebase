@@ -16,6 +16,10 @@ required_files=(
   "docs/architecture.md"
   ".agents/manifest.yaml"
   ".agents/reports/TEMPLATE.md"
+  "skills/task-start/SKILL.md"
+  "skills/task-progress/SKILL.md"
+  "skills/task-closeout/SKILL.md"
+  "skills/task-decompose/SKILL.md"
 )
 
 for file in "${required_files[@]}"; do
@@ -37,6 +41,16 @@ fi
 
 if ! grep -q '.agents/reports/TEMPLATE.md' "$TMP_DIR/AGENTS.md"; then
   echo "FAIL: copied AGENTS.md does not reference the report template"
+  exit 1
+fi
+
+if ! grep -q 'skills/task-start/SKILL.md' "$TMP_DIR/AGENTS.md"; then
+  echo "FAIL: copied AGENTS.md does not reference the task-start core skill"
+  exit 1
+fi
+
+if ! grep -q '^skills_dir: skills$' "$TMP_DIR/.agents/manifest.yaml"; then
+  echo "FAIL: copied manifest does not wire the core skills directory"
   exit 1
 fi
 

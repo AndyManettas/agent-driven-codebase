@@ -16,6 +16,10 @@ EXPECTED_FILES=(
   "docs/architecture.md"
   ".agents/manifest.yaml"
   ".agents/reports/TEMPLATE.md"
+  "skills/task-start/SKILL.md"
+  "skills/task-progress/SKILL.md"
+  "skills/task-closeout/SKILL.md"
+  "skills/task-decompose/SKILL.md"
 )
 
 errors=0

@@ -1,9 +1,0 @@
-{
-  "servers": {
-    "example": {
-      "command": "npx",
-      "args": ["-y", "example-mcp-server"],
-      "env": {}
-    }
-  }
-}

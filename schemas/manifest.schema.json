@@ -3,7 +3,7 @@
   "title": "manifest.yaml",
   "description": "Schema for the agent-driven codebase discovery index",
   "type": "object",
-  "required": ["version", "entrypoints", "task_registry", "plans_dir", "reports_dir"],
+  "required": ["version", "entrypoints", "task_registry", "plans_dir", "reports_dir", "skills_dir"],
   "properties": {
     "version": {
       "type": "integer",
@@ -29,7 +29,7 @@
     },
     "skills_dir": {
       "type": "string",
-      "description": "Optional directory containing reusable repo skills"
+      "description": "Directory containing the mandatory core lifecycle skills plus any reusable repo-specific skills"
     }
   },
   "additionalProperties": false

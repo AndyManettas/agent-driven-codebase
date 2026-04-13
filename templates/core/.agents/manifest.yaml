@@ -2,10 +2,10 @@ version: 1
 
 entrypoints:
   - AGENTS.md
-  - SPEC.md
+  - .agents/manifest.yaml
   - TASKS.yaml
-  - docs/architecture.md
 
 task_registry: TASKS.yaml
 plans_dir: plans
 reports_dir: .agents/reports
+skills_dir: skills
