@@ -100,7 +100,7 @@ It shows only the files adopters actually customize after copying `templates/cor
 - `SPEC.md`
 - `TASKS.yaml`
 - `docs/architecture.md`
-- `plans/API-001-task-crud.md`
+- `plans/API-001.md`
 - `.agents/reports/API-001.md`
 
 It intentionally omits the bootstrap files, core skills, and reusable templates that already live in `templates/core/`.
@@ -112,8 +112,7 @@ It intentionally omits the bootstrap files, core skills, and reusable templates 
 - `skills/` for extra repo-specific workflows beyond the core lifecycle
 - `local-agents/` for subtree-specific `AGENTS.md` files in monorepos or large repos
 
-Future extensions such as CI, scripts, status files, greenfield root files, or integration config are intentionally not shipped in lean v1.
-Add them in your own repo only when the need is concrete.
+Anything beyond these is intentionally out of lean v1; see [`templates/extensions/README.md`](templates/extensions/README.md) for what is deliberately not shipped and why.
 
 ## Deep explainer
 
@@ -121,5 +120,8 @@ Read [How it works](docs/how-it-works.md) for the operating model, migration gui
 
 ## Schemas and tests
 
-Schemas live in [schemas/](schemas/).
+[schemas/](schemas/) defines the `TASKS.yaml` and `.agents/manifest.yaml` contract and backs this repo's tests.
+It is not part of the copied core; adopters who want the same validation can copy `schemas/` into their repo and point their own checks at it.
+
+Run every check with [`tests/run-all.sh`](tests/run-all.sh).
 Tests cover the core template, the worked overlay example, schema expectations, docs links, and adoption smoke behavior in [tests/](tests/).

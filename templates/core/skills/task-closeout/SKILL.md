@@ -23,15 +23,14 @@ description: Reconcile code, verification, task state, and durable repo context 
 2. Rebase on the default branch, rerun final verification, and recheck overlap before marking the task complete.
 3. Record the observed verification commands and results in the task report.
 4. Ensure the latest report entry explains what shipped, what remains, and what the next session or reviewer should do first.
-5. Update `docs/architecture.md`, `SPEC.md`, and `STATUS.md` if the final change introduced durable truth changes that are not already recorded.
-6. Mark `done` only when verification passes. Otherwise use `blocked` or `in_review`, whichever matches reality.
+5. Update `docs/architecture.md` and `SPEC.md` if the final change introduced durable truth changes that are not already recorded.
+6. When verification passes, mark the task `in_review` for a review-ready handoff, or `done` only if it needs no further human review. When verification does not pass, mark `blocked` and never mark `done`.
 
 ## Update surfaces
 - `TASKS.yaml`
 - `.agents/reports/<TASK-ID>.md`
 - `docs/architecture.md` when system truth changed
 - `SPEC.md` when product truth changed
-- `STATUS.md` when macro status changed
 
 ## Output
 The task can be resumed, reviewed, or merged without relying on hidden chat context, and the task status matches the actual verification state.

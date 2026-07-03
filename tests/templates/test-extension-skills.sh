@@ -29,6 +29,11 @@ for skill in \
   "$SKILLS_DIR/example-code-review/SKILL.md" \
   "$SKILLS_DIR/example-release-checklist/SKILL.md"
 do
+  if ! grep -q '^---$' "$skill"; then
+    echo "FAIL: $(basename "$(dirname "$skill")") skill is missing YAML frontmatter"
+    exit 1
+  fi
+
   for heading in "${required_headings[@]}"; do
     if ! grep -q "^${heading}$" "$skill"; then
       echo "FAIL: $(basename "$(dirname "$skill")") skill is missing heading: $heading"

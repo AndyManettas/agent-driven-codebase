@@ -75,8 +75,8 @@ Human                          Repo                           Agent
   │                             ◄── loads task-start skill ─────┤
   │                             ◄── checks for file overlap ────┤
   │                             │                               │
-  │                             ◄── creates task branch ────────┤
   │                             ◄── sets status: in_progress ───┤
+  │                             ◄── creates task branch ────────┤
   │                             │                               │
   │                             │    ┌─ implement ──────────────┤
   │                             │    │  write tests             │
@@ -163,7 +163,7 @@ Only two extensions are shipped:
 - `templates/extensions/skills/` for extra repo-specific workflows such as release checklists or review follow-up
 - `templates/extensions/local-agents/` for subtree-specific `AGENTS.md` files in monorepos or very large repos
 
-The lean v1 repo intentionally does not ship placeholder CI, scripts, ADRs, greenfield root files, status files, or external integration config.
+The lean v1 repo ships nothing beyond these two; `templates/extensions/README.md` records what is deliberately excluded and why.
 
 ## Platform usage
 
@@ -184,5 +184,8 @@ Load the lifecycle skill for the current phase from skills/.
 Task overlap checks in `TASKS.yaml` are advisory conflict avoidance only.
 Before starting, an agent checks whether any `in_progress` task has overlapping `files:` globs.
 If overlap exists, the agent stops, records the conflict, and does not proceed.
+
+An agent publishes its own claim by committing the `in_progress` status change to the default branch before starting implementation on its task branch.
+That default-branch state is what every other agent's overlap check reads.
 
 This avoids the most common collision, but it is not a hard distributed lock.

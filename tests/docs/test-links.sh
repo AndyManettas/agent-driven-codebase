@@ -41,7 +41,7 @@ check_links_in_file() {
       echo "FAIL: broken link in $(basename "$file"): $link"
       errors=$((errors + 1))
     fi
-  done < <(grep -oP '\[.*?\]\(\K[^)]+' "$file" 2>/dev/null || true)
+  done < <( { grep -oE '\]\([^)]+\)' "$file" || true; } | sed -E 's/^\]\(//; s/\)$//' )
 }
 
 # Check README.md

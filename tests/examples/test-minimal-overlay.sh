@@ -10,7 +10,7 @@ required_files=(
   "SPEC.md"
   "TASKS.yaml"
   "docs/architecture.md"
-  "plans/API-001-task-crud.md"
+  "plans/API-001.md"
   ".agents/reports/API-001.md"
 )
 

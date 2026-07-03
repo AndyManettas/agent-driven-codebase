@@ -11,16 +11,17 @@ status_values:
 tasks:
   - id: API-001
     title: Add task CRUD endpoints
-    status: ready
+    status: in_progress
     priority: P1
     size: M
     area: api
     deps: []
-    plan: plans/API-001-task-crud.md
+    plan: plans/API-001.md
     report: .agents/reports/API-001.md
     files:
       - src/routes/tasks/**
       - src/services/tasks/**
+      - src/db/migrations/**
       - tests/routes/tasks/**
     acceptance:
       - POST /tasks creates a task and returns 201.

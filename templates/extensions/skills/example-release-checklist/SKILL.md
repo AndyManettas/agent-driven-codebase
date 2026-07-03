@@ -1,3 +1,8 @@
+---
+name: release-checklist
+description: Run a repeatable pre-release checklist for a human-triggered release task.
+---
+
 # Release checklist
 
 ## Purpose

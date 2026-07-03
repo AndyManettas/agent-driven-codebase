@@ -8,7 +8,7 @@ Then replace only the files shown here:
 - `SPEC.md`
 - `TASKS.yaml`
 - `docs/architecture.md`
-- `plans/API-001-task-crud.md`
+- `plans/API-001.md`
 - `.agents/reports/API-001.md`
 
 The example intentionally omits `AGENTS.md`, `.agents/manifest.yaml`, the core lifecycle skills, and reusable templates because those stay owned by the copied core.

@@ -24,16 +24,14 @@ description: Update durable repo state at meaningful milestones during long-runn
 3. Update the task plan only if the approach, sequencing, or risk picture changed materially.
 4. Update `docs/architecture.md` only if module boundaries, data flow, external dependencies, or extension points changed.
 5. Update `SPEC.md` only if product intent, requirements, constraints, or definition of done changed.
-6. Update `STATUS.md` only if the repo adopted it and the milestone picture changed materially.
-7. If newly discovered work falls outside task scope, create child tasks instead of silently expanding the parent task.
-8. Do not churn durable repo files when nothing material changed.
+6. If newly discovered work falls outside task scope, create child tasks instead of silently expanding the parent task.
+7. Do not churn durable repo files when nothing material changed.
 
 ## Update surfaces
 - `.agents/reports/<TASK-ID>.md`
 - `plans/<TASK-ID>.md` when the approach changed
 - `docs/architecture.md` when system truth changed
 - `SPEC.md` when product truth changed
-- `STATUS.md` when macro status changed
 - `TASKS.yaml` when blocking state or decomposition changed
 
 ## Output

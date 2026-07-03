@@ -15,9 +15,9 @@ It is the bootstrap contract for the repo: it defines safety boundaries, command
 1. Safety boundaries and "ask first" rules
 2. Existing code, tests, and contracts define current behavior
 3. `SPEC.md` and the assigned task in `TASKS.yaml` define intended behavior
-4. Active core lifecycle skills define the baseline workflow
-5. Additional repo-local skills may refine extra repo-specific workflows without expanding task scope or replacing the core lifecycle
-6. This file defines bootstrap rules, verification rules, and boundaries
+4. This file's bootstrap and verification rules
+5. Active core lifecycle skills define the baseline workflow
+6. Additional repo-local skills refine extra repo-specific workflows without expanding task scope or replacing the core lifecycle
 7. Stale docs lose to code and tests
 
 ## Required core skills
@@ -77,6 +77,8 @@ Point these at your project's existing tools rather than inventing new ones:
 - Dependency additions or removals
 - Deleting large modules
 - Infrastructure or cost changes
+
+If an unattended run reaches one of these with no human answer available, do not proceed with it: stop, record the open question in the task report, and set the task to `blocked`.
 
 ### Never do
 - Commit secrets or credentials.

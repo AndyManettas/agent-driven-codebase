@@ -1,3 +1,8 @@
+---
+name: code-review-followup
+description: Apply a repeatable workflow for addressing actionable code review feedback on an assigned task.
+---
+
 # Code review follow-up
 
 ## Purpose
